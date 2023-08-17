@@ -1,24 +1,54 @@
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.io.*;
+import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.function.Function;
+import java.util.function.IntFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) throws IOException {
-        List<String> list = new ArrayList<>();
-        list.add("adsfasdf");
-        System.out.println(list.toString());
+        String name = "asdf我是";
+        byte[] bytes = name.getBytes(StandardCharsets.UTF_8);
+        String newname = new String(bytes, StandardCharsets.UTF_8);
+        File f = new File(Paths.get("src", "answer.txt").toUri());
+        System.out.println(f.length());
+
+        try (FileInputStream fin = new FileInputStream(f)) { //try-with-resources会自动关闭打开的外部资源
+
+        }
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
     }
 }
 
 class Student{
-    private String name;
-    private int age;
-    private double score;
+    int id;
+    String name;
+
+    public Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Student() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -26,29 +56,5 @@ class Student{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Student(String name, int age, double score) {
-        this.name = name;
-        this.age = age;
-        this.score = score;
-    }
-
-    public Student(){};
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public double getScore() {
-        return score;
-    }
-
-    public void setScore(double score) {
-        this.score = score;
     }
 }
