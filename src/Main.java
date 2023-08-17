@@ -15,13 +15,12 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String name = "asdf我是";
-        byte[] bytes = name.getBytes(StandardCharsets.UTF_8);
-        String newname = new String(bytes, StandardCharsets.UTF_8);
         File f = new File(Paths.get("src", "answer.txt").toUri());
         System.out.println(f.length());
-
         try (FileInputStream fin = new FileInputStream(f)) { //try-with-resources会自动关闭打开的外部资源
+            int len = (int)f.length();
+            byte[] all = new byte[len];
+            fin.read(all, 0, len);
 
         }
         catch (IOException ex){
