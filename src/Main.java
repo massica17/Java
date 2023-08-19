@@ -1,6 +1,9 @@
 import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.awt.*;
 import java.io.*;
 import java.math.BigDecimal;
+import java.nio.Buffer;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,16 +18,11 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        File f = new File(Paths.get("src", "answer.txt").toUri());
-        System.out.println(f.length());
-        try (FileInputStream fin = new FileInputStream(f)) { //try-with-resources会自动关闭打开的外部资源
-            int len = (int)f.length();
-            byte[] all = new byte[len];
-            fin.read(all, 0, len);
-
-        }
-        catch (IOException ex){
-            ex.printStackTrace();
+        File f = new File("src/answer.txt");
+        try(OutputStream fout = Files.newOutputStream(f.toPath());
+            OutputStreamWriter writer = new OutputStreamWriter(fout, StandardCharsets.UTF_8);){
+            String name = "wo撒旦发射点wo撒旦发射点wo撒旦发射点wo撒旦发射点wo撒旦发射点wo撒旦发射点wo撒旦发射点wo撒旦发射点";
+            writer.write(name);
         }
     }
 }
